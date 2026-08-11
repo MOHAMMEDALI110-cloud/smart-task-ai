@@ -35,7 +35,7 @@ The AI extracts:
 - Category
 - Due date
 
-Example:
+**Example:**
 
 > Prepare the ADROSONIC final demo tomorrow at 6 PM, make it high priority and categorize it as work.
 
@@ -107,13 +107,13 @@ If no deadline is mentioned, the system does not invent one.
 
 ## 🏗️ Architecture
 
-
+```text
                          ┌─────────────────────┐
                          │     React / Vite    │
                          │      Frontend       │
                          └──────────┬──────────┘
                                     │
-                              REST API / HTTP
+                             REST API / HTTP
                                     │
                                     ▼
                          ┌─────────────────────┐
@@ -130,77 +130,80 @@ If no deadline is mentioned, the system does not invent one.
             └────────────┘   └──────┬───────┘   └─────────────┘
                                     │
                                     ▼
-                             ┌─────────────┐
-                             │  Groq LLM   │
-                             └─────────────┘
+                              ┌─────────────┐
+                              │  Groq LLM   │
+                              └─────────────┘
+```
 
 ### 🔄 AI Workflow
 
-
-
-                 Natural Language Request
+```text
+                  Natural Language Request
                             │
                             ▼
-                    ┌──────────────┐
-                    │  AI Parser   │
-                    └──────┬───────┘
-                           │
-                           ▼
-                  Structured Task Data
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │   FastAPI    │
-                    └──────┬───────┘
-                           │
-                           ▼
-                       SQLite DB
-                           │
-                           ▼
-                  AI Priority Scoring
-                           │
-                           ▼
-                     Smart Sort
-                           │
-                           ▼
+                     ┌──────────────┐
+                     │  AI Parser   │
+                     └──────┬───────┘
+                            │
+                            ▼
+                   Structured Task Data
+                            │
+                            ▼
+                     ┌──────────────┐
+                     │   FastAPI    │
+                     └──────┬───────┘
+                            │
+                            ▼
+                         SQLite DB
+                            │
+                            ▼
+                   AI Priority Scoring
+                            │
+                            ▼
+                       Smart Sort
+                            │
+                            ▼
                   Productivity Assistant
+```
 
-### 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
-React 19
-React DOM
-Vite
-JavaScript
-CSS
-## Backend
+- React 19
+- React DOM
+- Vite
+- JavaScript
+- CSS
 
-Python
-FastAPI
-Uvicorn
-Pydantic
-SQLAlchemy
-SQLite
+### Backend
 
-## AI
+- Python
+- FastAPI
+- Uvicorn
+- Pydantic
+- SQLAlchemy
+- SQLite
 
-Groq API
-LLM-based task extraction
-AI priority scoring
-AI productivity assistance
-AI task breakdown
-Natural-language date interpretation
+### AI
 
-## Development
+- Groq API
+- LLM-based task extraction
+- AI priority scoring
+- AI productivity assistance
+- AI task breakdown
+- Natural-language date interpretation
 
-Git
-GitHub
-REST APIs
-ESLint
+### Development
+
+- Git
+- GitHub
+- REST APIs
+- ESLint
 
 ## 📁 Project Structure
 
+```text
 smart-task-ai/
 │
 ├── backend/
@@ -237,122 +240,157 @@ smart-task-ai/
 │
 ├── .gitignore
 └── README.md
+```
 
 ## ⚙️ Installation & Setup
-## Prerequisites
+
+### Prerequisites
 
 Make sure the following are installed:
 
-Python
-Node.js
-npm
-Git
+- Python
+- Node.js
+- npm
+- Git
+- A Groq API key
 
-A Groq API key
+### 1. Clone the repository
 
-1. Clone the repository
+```bash
 git clone https://github.com/MOHAMMEDALI110-cloud/smart-task-ai.git
 cd smart-task-ai
+```
 
-2. Backend Setup
+### 2. Backend Setup
 
 Create the Python virtual environment:
 
+```powershell
 python -m venv backend\.venv
+```
 
 Activate it:
 
+```powershell
 .\backend\.venv\Scripts\Activate.ps1
+```
 
 Install backend dependencies:
 
+```powershell
 pip install -r backend\requirements.txt
-3. Configure the Groq API Key
+```
 
-Create a .env file in the project root:
+### 3. Configure the Groq API Key
 
+Create a `.env` file in the project root:
+
+```env
 GROQ_API_KEY=your_groq_api_key
+```
 
-Do not commit this file to GitHub.
+> **Important:** Do not commit this file to GitHub.
 
-The .env file is excluded through .gitignore.
+The `.env` file is excluded through `.gitignore`.
 
-4. Start the Backend
+### 4. Start the Backend
 
 From the project root:
 
+```bash
 uvicorn backend.app.main:app --reload
+```
 
 Backend:
 
+```text
 http://127.0.0.1:8000
+```
 
 FastAPI documentation:
 
+```text
 http://127.0.0.1:8000/docs
+```
 
 Health check:
 
+```text
 http://127.0.0.1:8000/health
-5. Frontend Setup
+```
+
+### 5. Frontend Setup
 
 Open a second terminal.
 
 Navigate to the frontend:
 
+```bash
 cd frontend
+```
 
 Install dependencies:
 
+```bash
 npm install
+```
 
 Start the development server:
 
+```bash
 npm run dev
+```
 
 Frontend:
 
+```text
 http://localhost:5173
+```
 
 ## 🔌 API Endpoints
-Task Management
 
-| Method | Endpoint               | Description        |
-| ------ | ---------------------- | ------------------ |
-| GET    | `/api/tasks`           | Retrieve all tasks |
-| POST   | `/api/tasks`           | Create a task      |
-| PUT    | `/api/tasks/{task_id}` | Update a task      |
-| DELETE | `/api/tasks/{task_id}` | Delete a task      |
+### Task Management
 
-## AI
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/tasks` | Retrieve all tasks |
+| POST | `/api/tasks` | Create a task |
+| PUT | `/api/tasks/{task_id}` | Update a task |
+| DELETE | `/api/tasks/{task_id}` | Delete a task |
 
-| Method | Endpoint                 | Description                                                    |
-| ------ | ------------------------ | -------------------------------------------------------------- |
-| POST   | `/api/ai/assist`         | Analyze current tasks and provide productivity recommendations |
-| POST   | `/api/ai/parse-task`     | Convert natural language into structured task data             |
-| POST   | `/api/ai/priority-score` | Generate an AI-assisted task priority score                    |
-| POST   | `/api/ai/breakdown-task` | Break complex tasks into actionable steps                      |
+### AI
 
-## Health
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/ai/assist` | Analyze current tasks and provide productivity recommendations |
+| POST | `/api/ai/parse-task` | Convert natural language into structured task data |
+| POST | `/api/ai/priority-score` | Generate an AI-assisted task priority score |
+| POST | `/api/ai/breakdown-task` | Break complex tasks into actionable steps |
 
-| Method | Endpoint  | Description          |
-| ------ | --------- | -------------------- |
-| GET    | `/health` | Backend health check |
+### Health
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Backend health check |
 
 ## 🎯 Example AI Interaction
-User Input
-Prepare the ADROSONIC final demo tomorrow at 6 PM,
-make it high priority and categorize it as work.
-AI-Generated Task
-Title: ADROSONIC Final Demo
-Priority: High
-Category: Work
-Due Date: Tomorrow at 6 PM
+
+### User Input
+
+> Prepare the ADROSONIC final demo tomorrow at 6 PM, make it high priority and categorize it as work.
+
+### AI-Generated Task
+
+- **Title:** ADROSONIC Final Demo
+- **Priority:** High
+- **Category:** Work
+- **Due Date:** Tomorrow at 6 PM
 
 The task is then persisted through the FastAPI backend and can receive an AI priority score.
 
 ## 🧠 Example Productivity Flow
 
+```text
 User creates tasks
         │
         ▼
@@ -369,59 +407,57 @@ AI Assistant analyzes workload
         │
         ▼
 User receives actionable recommendations
+```
 
 ## 🔐 Security
-API credentials are stored in environment variables.
-.env is excluded from version control.
-Local database files are excluded from version control.
-Python virtual environments are excluded from version control.
-Generated Python cache files are excluded from version control.
 
-Never commit API keys or other secrets to GitHub.
+- API credentials are stored in environment variables.
+- `.env` is excluded from version control.
+- Local database files are excluded from version control.
+- Python virtual environments are excluded from version control.
+- Generated Python cache files are excluded from version control.
+
+> **Never commit API keys or other secrets to GitHub.**
 
 ## 🧪 Validation
 
 The following workflows have been manually validated during development:
 
-Task creation
-Task editing
-Task completion
-Task deletion
-Task persistence after browser refresh
-Search
-Status filtering
-Priority filtering
-Smart Sort
-AI task parsing
-AI priority scoring
-AI task breakdown
-AI productivity assistant
-Natural-language relative date parsing
-Handling requests with no due date
-Backend health check
-Frontend-to-backend API communication
+- Task creation
+- Task editing
+- Task completion
+- Task deletion
+- Task persistence after browser refresh
+- Search
+- Status filtering
+- Priority filtering
+- Smart Sort
+- AI task parsing
+- AI priority scoring
+- AI task breakdown
+- AI productivity assistant
+- Natural-language relative date parsing
+- Handling requests with no due date
+- Backend health check
+- Frontend-to-backend API communication
 
 ## 🔮 Future Improvements
 
 Potential production enhancements include:
 
-User authentication and authorization
-PostgreSQL for production database workloads
-Background AI processing
-Task notifications and reminders
-Calendar integration
-AI-generated daily planning
-Productivity analytics dashboard
-Docker-based deployment
-Cloud deployment
-Automated testing and CI/CD
+- User authentication and authorization
+- PostgreSQL for production database workloads
+- Background AI processing
+- Task notifications and reminders
+- Calendar integration
+- AI-generated daily planning
+- Productivity analytics dashboard
+- Docker-based deployment
+- Cloud deployment
+- Automated testing and CI/CD
 
 ## 👨‍💻 Project
 
 Smart Task AI demonstrates practical full-stack software engineering combined with AI/LLM integration.
 
 The project focuses on turning natural-language task descriptions into structured, persistent tasks and using AI-driven context to improve prioritization and productivity.
-
-
-
-
