@@ -107,7 +107,7 @@ If no deadline is mentioned, the system does not invent one.
 
 ## 🏗️ Architecture
 
-```text
+
                          ┌─────────────────────┐
                          │     React / Vite    │
                          │      Frontend       │
@@ -134,7 +134,7 @@ If no deadline is mentioned, the system does not invent one.
                              │  Groq LLM   │
                              └─────────────┘
 
-###🔄 AI Workflow
+### 🔄 AI Workflow
 
 
 
@@ -182,6 +182,7 @@ Uvicorn
 Pydantic
 SQLAlchemy
 SQLite
+
 ## AI
 
 Groq API
@@ -190,6 +191,7 @@ AI priority scoring
 AI productivity assistance
 AI task breakdown
 Natural-language date interpretation
+
 ## Development
 
 Git
@@ -197,7 +199,7 @@ GitHub
 REST APIs
 ESLint
 
-##📁 Project Structure
+## 📁 Project Structure
 
 smart-task-ai/
 │
@@ -236,7 +238,7 @@ smart-task-ai/
 ├── .gitignore
 └── README.md
 
-##⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 ## Prerequisites
 
 Make sure the following are installed:
@@ -245,7 +247,9 @@ Python
 Node.js
 npm
 Git
+
 A Groq API key
+
 1. Clone the repository
 git clone https://github.com/MOHAMMEDALI110-cloud/smart-task-ai.git
 cd smart-task-ai
@@ -309,7 +313,8 @@ npm run dev
 Frontend:
 
 http://localhost:5173
-##🔌 API Endpoints
+
+## 🔌 API Endpoints
 Task Management
 
 | Method | Endpoint               | Description        |
@@ -319,7 +324,7 @@ Task Management
 | PUT    | `/api/tasks/{task_id}` | Update a task      |
 | DELETE | `/api/tasks/{task_id}` | Delete a task      |
 
-AI
+## AI
 
 | Method | Endpoint                 | Description                                                    |
 | ------ | ------------------------ | -------------------------------------------------------------- |
@@ -328,13 +333,13 @@ AI
 | POST   | `/api/ai/priority-score` | Generate an AI-assisted task priority score                    |
 | POST   | `/api/ai/breakdown-task` | Break complex tasks into actionable steps                      |
 
-Health
+## Health
 
 | Method | Endpoint  | Description          |
 | ------ | --------- | -------------------- |
 | GET    | `/health` | Backend health check |
 
-##🎯 Example AI Interaction
+## 🎯 Example AI Interaction
 User Input
 Prepare the ADROSONIC final demo tomorrow at 6 PM,
 make it high priority and categorize it as work.
@@ -346,7 +351,7 @@ Due Date: Tomorrow at 6 PM
 
 The task is then persisted through the FastAPI backend and can receive an AI priority score.
 
-##🧠 Example Productivity Flow
+## 🧠 Example Productivity Flow
 
 User creates tasks
         │
@@ -365,7 +370,7 @@ AI Assistant analyzes workload
         ▼
 User receives actionable recommendations
 
-##🔐 Security
+## 🔐 Security
 API credentials are stored in environment variables.
 .env is excluded from version control.
 Local database files are excluded from version control.
@@ -374,7 +379,7 @@ Generated Python cache files are excluded from version control.
 
 Never commit API keys or other secrets to GitHub.
 
-##🧪 Validation
+## 🧪 Validation
 
 The following workflows have been manually validated during development:
 
@@ -411,7 +416,7 @@ Docker-based deployment
 Cloud deployment
 Automated testing and CI/CD
 
-##👨‍💻 Project
+## 👨‍💻 Project
 
 Smart Task AI demonstrates practical full-stack software engineering combined with AI/LLM integration.
 
