@@ -1,3 +1,17 @@
+## 🚀 Live Demo
+
+- **Live Application:** https://smart-task-ai-frontend.onrender.com
+- **Backend API:** https://smart-task-ai-backend.onrender.com
+- **API Documentation (Swagger):** https://smart-task-ai-backend.onrender.com/docs
+- **GitHub Repository:** https://github.com/MOHAMMEDALI110-cloud/smart-task-ai
+
+---
+
+
+
+
+
+
 # 🧠 Smart Task AI
 
 An AI-powered task management system that combines traditional task management with intelligent task understanding, AI-assisted prioritization, natural-language task creation, task breakdown, and productivity assistance.
