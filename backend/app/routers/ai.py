@@ -1,5 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
+
+from backend.app import crud
+from backend.app.database import get_db
 
 from backend.app.ai.service import (
     generate_ai_response,
@@ -26,10 +30,57 @@ class AIResponse(BaseModel):
 
 
 @router.post("/assist", response_model=AIResponse)
-def ai_assist(request: AIRequest):
-    response = generate_ai_response(request.prompt)
-    return AIResponse(response=response)
+def ai_assist(
+    request: AIRequest,
+    db: Session = Depends(get_db),
+):
+    tasks = crud.get_tasks(db)
 
+    task_context = []
+
+    for task in tasks:
+        status = getattr(task.status, "value", task.status)
+        priority = getattr(task.priority, "value", task.priority)
+
+        task_context.append(
+            f"- {task.title} | "
+            f"Status: {status} | "
+            f"Priority: {priority} | "
+            f"Category: {task.category or 'None'} | "
+            f"Due: {task.due_date or 'No due date'} | "
+            f"Description: {task.description or 'None'}"
+        )
+
+    if task_context:
+        context_text = "\n".join(task_context)
+    else:
+        context_text = "No tasks currently exist."
+
+    enriched_prompt = f"""
+User request:
+{request.prompt}
+
+Current task workload:
+{context_text}
+
+Use the current task workload above when answering the user's request.
+
+If the user asks about prioritization, consider:
+- priority
+- status
+- due date
+- task importance
+- workload context
+
+Do not claim that you cannot see the user's tasks because the task
+workload is provided above.
+
+Give a concise, practical answer.
+"""
+
+    response = generate_ai_response(enriched_prompt)
+
+    return AIResponse(response=response)
 
 # =========================
 # AI PRIORITY SCORE
